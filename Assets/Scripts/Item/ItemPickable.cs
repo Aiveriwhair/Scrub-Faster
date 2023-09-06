@@ -4,24 +4,22 @@ using UnityEngine;
 public abstract class ItemPickable : ItemInteractable
 {
     public PlayerInventory inventory;
-    protected ItemPickable(string name, float weight, PlayerInventory inventory)
+    public void Start()
     {
-        this.inventory = inventory;
-        itemName = name;
-        itemWeight = weight;
-        InteractionName = "Pick";
         InteractionKeyCode = KeyCode.E;
+    }
+    
+    public override void Interact()
+    {
+        inventory.AddItem(this);
     }
 
     public override string getInteractionText()
     {
         if (inventory.isFull())
         {
-            return "Press (" + InteractionKeyCode.ToString() + ") to pick";
+            return "Press (" + InteractionKeyCode + ") to pick";
         }
-        else
-        {
-            return "Inventory full";
-        }
+        return "Inventory full";
     }
 }
