@@ -25,7 +25,7 @@ public class PlayerInteraction : MonoBehaviour
             {
                 interactText.gameObject.SetActive(true);
 
-                interactText.text = interactableObject.getInteractionText();
+                interactText.text = interactableObject.GetInteractionText();
 
                 if (Input.GetKeyDown(KeyCode.E))
                 {
