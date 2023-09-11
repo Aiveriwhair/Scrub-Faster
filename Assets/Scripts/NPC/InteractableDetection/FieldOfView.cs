@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
-public class InteractableScanner : MonoBehaviour
+public class FieldOfView : MonoBehaviour
 {
     public float coneRadius = 10f;
     [Range(0, 360)]
@@ -24,6 +24,7 @@ public class InteractableScanner : MonoBehaviour
         {
             yield return new WaitForSeconds(delay);
             FindVisibleTargets();
+            DrawLineToTargets();
             Debug.Log("Visible targets = " + visibleTargets.Count);
         }
     }
@@ -47,8 +48,20 @@ public class InteractableScanner : MonoBehaviour
         }
     }
 
-    private Vector3 DirFromAngle(float angleInDegrees)
+    private void DrawLineToTargets()
     {
-        return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
+        for (int i = 0; i < visibleTargets.Count; i++)
+        {
+            Debug.Log(i);
+            Color color = new Color(255, 0, 0);
+            Debug.DrawLine(this.transform.position, visibleTargets[i].position, color);
+        }
+    }
+
+    public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal) {
+        if (!angleIsGlobal) {
+            angleInDegrees += transform.eulerAngles.y;
+        }
+        return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad),0,Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
     }
 }
