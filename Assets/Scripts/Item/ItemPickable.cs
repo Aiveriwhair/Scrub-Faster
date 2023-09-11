@@ -1,7 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public abstract class ItemPickable : ItemInteractable
+public class ItemPickable : ItemInteractable
 {
     public PlayerInventory inventory;
     
@@ -17,16 +17,10 @@ public abstract class ItemPickable : ItemInteractable
 
     public override string GetInteractionText()
     {
-        if (inventory.isFull())
+        if (inventory.IsFull())
         {
             return "Press (" + InteractionKeyCode + ") to pick";
         }
         return "Inventory full";
-    }
-
-    protected void SetProperties(string iName, float weight)
-    {
-        this.itemName = iName;
-        this.itemWeight = weight;
     }
 }

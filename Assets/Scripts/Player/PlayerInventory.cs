@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
-    private List<ItemInteractable> _inventoryItems = new List<ItemInteractable>();
-
+    private List<ItemInteractable> _inventoryItems = new();
+    
     public int inventorySize = 3;
+    public int cursor = 0; 
     
     public bool AddItem(ItemInteractable item)
     {
@@ -18,6 +19,18 @@ public class PlayerInventory : MonoBehaviour
         else
         {
             return false;
+        }
+    }
+
+    public ItemInteractable GetIndex(int index)
+    {
+        if (index >= _inventoryItems.Count || index < 0)
+        {
+            return null;
+        }
+        else
+        {
+            return _inventoryItems[index];
         }
     }
 
@@ -36,7 +49,12 @@ public class PlayerInventory : MonoBehaviour
         _inventoryItems.Clear();
     }
 
-    public bool isFull()
+    public int Count()
+    {
+        return _inventoryItems.Count;
+    }
+    
+    public bool IsFull()
     {
         return _inventoryItems.Count < inventorySize;
     }
