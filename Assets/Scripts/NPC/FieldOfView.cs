@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Collections;
 public class FieldOfView : MonoBehaviour
 {
-    public float coneRadius = 10f;
+    public float detectionRadius = 10f;
     [Range(0, 360)]
     public float coneAngle;
 
@@ -25,14 +25,13 @@ public class FieldOfView : MonoBehaviour
             yield return new WaitForSeconds(delay);
             FindVisibleTargets();
             DrawLineToTargets();
-            Debug.Log("Visible targets = " + visibleTargets.Count);
         }
     }
 
     private void FindVisibleTargets()
     {
         visibleTargets.Clear();
-        var targetsInViewRadius = Physics.OverlapSphere(transform.position, coneRadius, targetMask);
+        var targetsInViewRadius = Physics.OverlapSphere(transform.position, detectionRadius, targetMask);
         for (int i = 0; i < targetsInViewRadius.Length; i++)
         {
             Transform target = targetsInViewRadius[i].transform;
@@ -52,7 +51,6 @@ public class FieldOfView : MonoBehaviour
     {
         for (int i = 0; i < visibleTargets.Count; i++)
         {
-            Debug.Log(i);
             Color color = new Color(255, 0, 0);
             Debug.DrawLine(this.transform.position, visibleTargets[i].position, color);
         }
