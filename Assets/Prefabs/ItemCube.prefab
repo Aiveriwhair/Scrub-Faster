@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8848289057747064784}
   - component: {fileID: 3085539155409677308}
   - component: {fileID: 3722967197233913986}
-  m_Layer: 10
+  m_Layer: 6
   m_Name: ItemCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,6 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Unset Name
   itemWeight: 0.1
+  isGlowing: 0
   inventory: {fileID: 0}
 --- !u!114 &4349511378814615653
 MonoBehaviour:

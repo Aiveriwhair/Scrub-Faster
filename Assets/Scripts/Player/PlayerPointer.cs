@@ -2,13 +2,21 @@ using UnityEngine;
 using UnityEngine.UI;
 public class PlayerPointer : MonoBehaviour
 {
-    public Text interactText;
+    public Text pointerInfoDisplay;
     public float interactDistance = 3f;
     public Transform orientation;
+    public LayerMask detectedLayer;
+    private ItemInteractable _pointedItem = null;
 
+
+    public ItemInteractable PointingAt()
+    {
+        return !_pointedItem ? null : _pointedItem;
+    }
+    
     private void Start()
     {
-        interactText.gameObject.SetActive(false);
+        pointerInfoDisplay.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -17,30 +25,28 @@ public class PlayerPointer : MonoBehaviour
         Vector3 rayDirection = orientation.forward;
         RaycastHit hit;
 
-        if (Physics.Raycast(rayStart, rayDirection, out hit, interactDistance))
+        if (Physics.Raycast(rayStart, rayDirection, out hit, interactDistance, detectedLayer))
         {
             var interactableObject = hit.collider.GetComponent<ItemInteractable>();
 
             if (interactableObject != null)
             {
-                interactText.gameObject.SetActive(true);
+                pointerInfoDisplay.gameObject.SetActive(true);
 
-                interactText.text = interactableObject.GetInteractionText();
-                interactableObject.MakeGlow();
+                pointerInfoDisplay.text = interactableObject.GetInteractionText();
+                interactableObject.isGlowing = true;
 
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    interactableObject.Interact();
-                }
+                _pointedItem = interactableObject;
             }
             else
             {
-                interactText.gameObject.SetActive(false);
+                pointerInfoDisplay.gameObject.SetActive(false);
+                _pointedItem = null;
             }
         }
         else
         {
-            interactText.gameObject.SetActive(false);
+            pointerInfoDisplay.gameObject.SetActive(false);
         }
     }
 }

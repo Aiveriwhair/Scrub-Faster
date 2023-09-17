@@ -3,23 +3,22 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
-    private List<ItemInteractable> _inventoryItems = new();
-    
+    [Range(1, 10)]
     public int inventorySize = 3;
-    public int cursor = 0; 
     
-    public bool AddItem(ItemInteractable item)
+    private bool _hasBeenModified = false;
+    private List<ItemInteractable> _inventoryItems = new();
+    private int _cursor = 0;
+    
+    public bool Add(ItemInteractable item)
     {
-        if (_inventoryItems.Count < inventorySize)
-        {
-            _inventoryItems.Add(item);
-            item.gameObject.SetActive(false);
-            return true;
-        }
-        else
+        if (IsFull())
         {
             return false;
         }
+        _inventoryItems.Add(item);
+        _hasBeenModified = true;
+        return true;
     }
 
     public ItemInteractable GetIndex(int index)
@@ -28,34 +27,66 @@ public class PlayerInventory : MonoBehaviour
         {
             return null;
         }
-        else
-        {
-            return _inventoryItems[index];
-        }
+        return _inventoryItems[index];
     }
 
-    public void RemoveItem(ItemInteractable item)
+    public void Remove(ItemInteractable item)
     {
-        _inventoryItems.Remove(item);
+        if (!_inventoryItems.Remove(item))
+        {
+            return;
+        }
+        _hasBeenModified = true;
     }
 
-    public bool ContainsItem(ItemInteractable item)
+    public ItemInteractable RemoveAt(int index = 0)
+    {
+        if (IsEmpty())
+        {
+            return null;
+        }
+        var item = _inventoryItems[index];
+        _inventoryItems.RemoveAt(index);
+        return item;
+    }
+
+    public bool Includes(ItemInteractable item)
     {
         return _inventoryItems.Contains(item);
     }
 
-    public void ClearInventory()
+    public void Clear()
     {
+        if (IsEmpty())
+        {
+            return;
+        }
         _inventoryItems.Clear();
+        _hasBeenModified = true;
     }
 
     public int Count()
     {
         return _inventoryItems.Count;
     }
-    
+
     public bool IsFull()
     {
-        return _inventoryItems.Count < inventorySize;
+        return Count() >= inventorySize;
+    }
+
+    public bool IsEmpty()
+    {
+        return Count() <= 0;
+    }
+
+    public ItemInteractable GetSelectedItem()
+    {
+        return _inventoryItems[_cursor];
+    }
+
+    public bool HasBeenModified()
+    {
+        return _hasBeenModified;
     }
 }
