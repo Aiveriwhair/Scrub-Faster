@@ -32,10 +32,15 @@ public class ItemPickable : ItemInteractable
         gameObject.SetActive(true);
     }
     
-    public override void Interact()
+    public override void InteractPrimary()
     {
         if(!inventory.Add(this)) return;
         gameObject.SetActive(false);
+    }
+
+    public override void InteractSecondary()
+    {
+        throw new System.NotImplementedException();
     }
 
     public override string GetInteractionText()

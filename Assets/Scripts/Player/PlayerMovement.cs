@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public float airMultiplier;
     private bool _readyToJump;
 
-    [Header("Keybinds")] 
+    [Header("Key binds")] 
     public KeyCode jumpKey;
     public KeyCode sprintKey;
     

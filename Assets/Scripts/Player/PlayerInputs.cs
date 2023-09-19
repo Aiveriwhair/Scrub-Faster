@@ -7,9 +7,9 @@ public class PlayerInputs : MonoBehaviour
     private PlayerInventory _inventory;
     
     [Header("Input keys")]
-    public KeyCode dropKeyCode = KeyCode.A;
-    public KeyCode interactKeyCode = KeyCode.E;
-    public KeyCode openMenuKeyCode = KeyCode.Escape;
+    public KeyCode dropKeyCode = KeyCode.R;
+    public KeyCode interactPrimaryKeyCode = KeyCode.E;
+    public KeyCode interactSecondaryKeyCode = KeyCode.Q;
     public void Start()
     {
         _inventory = GetComponent<PlayerInventory>();
@@ -26,12 +26,20 @@ public class PlayerInputs : MonoBehaviour
                 ((ItemPickable)item).Drop();
             }
         }
-        if (Input.GetKeyDown(interactKeyCode))
+        if (Input.GetKeyDown(interactPrimaryKeyCode))
         {
             var inRangeItem = _pointer.PointingAt();
             if (inRangeItem)
             {
-                inRangeItem.Interact();
+                inRangeItem.InteractPrimary();
+            }
+        }
+        if (Input.GetKeyDown(interactSecondaryKeyCode))
+        {
+            var inRangeItem = _pointer.PointingAt();
+            if (inRangeItem)
+            {
+                inRangeItem.InteractSecondary();
             }
         }
     }

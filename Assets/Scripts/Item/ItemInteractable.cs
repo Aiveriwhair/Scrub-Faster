@@ -4,7 +4,7 @@ using UnityEngine;
 public abstract class ItemInteractable : MonoBehaviour
 {
     public string itemName = "Unset Name";
-    public float itemMass = .1f;
+    public int itemMass = 1;
     [HideInInspector]
     public bool isGlowing = false;
 
@@ -16,6 +16,7 @@ public abstract class ItemInteractable : MonoBehaviour
         isGlowing = false;
     }
 
-    public abstract void Interact();
+    public abstract void InteractPrimary();
+    public abstract void InteractSecondary();
     public abstract string GetInteractionText();
 }

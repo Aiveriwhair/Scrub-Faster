@@ -7,6 +7,7 @@ public class PlayerInventory : MonoBehaviour
     public int inventorySize = 3;
     
     private bool _hasBeenModified = false;
+    [SerializeField]
     private List<ItemInteractable> _inventoryItems = new();
     private int _cursor = 0;
     

@@ -24,6 +24,7 @@ public class PlayerPointer : MonoBehaviour
         Vector3 rayStart = orientation.position;
         Vector3 rayDirection = orientation.forward;
         RaycastHit hit;
+        _pointedItem = null;
 
         if (Physics.Raycast(rayStart, rayDirection, out hit, interactDistance, detectedLayer))
         {
@@ -41,7 +42,6 @@ public class PlayerPointer : MonoBehaviour
             else
             {
                 pointerInfoDisplay.gameObject.SetActive(false);
-                _pointedItem = null;
             }
         }
         else
