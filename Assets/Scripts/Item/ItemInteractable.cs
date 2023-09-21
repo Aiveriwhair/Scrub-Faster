@@ -7,8 +7,6 @@ public abstract class ItemInteractable : MonoBehaviour
     public int itemMass = 1;
     [HideInInspector]
     public bool isGlowing = false;
-
-    protected KeyCode InteractionKeyCode { get; set; }
     
     public void Update()
     {

@@ -83,7 +83,7 @@ public class PlayerInventory : MonoBehaviour
 
     public ItemInteractable GetSelectedItem()
     {
-        return _inventoryItems[_cursor];
+        return IsEmpty() ? null : _inventoryItems[_cursor];
     }
 
     public bool HasBeenModified()

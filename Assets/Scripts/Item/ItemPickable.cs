@@ -5,16 +5,12 @@ public class ItemPickable : ItemInteractable
 {
     [Header("Drop")]
     public Transform handLocation;
+    public Transform visionOrientation;
     public float dropForce;
     
     [Header("Pick")]
     public PlayerInventory inventory;
     
-    public void Start()
-    {
-        InteractionKeyCode = KeyCode.E;
-    }
-
     private new void Update()
     {
         GetComponent<Outline>().enabled = isGlowing;
@@ -24,12 +20,13 @@ public class ItemPickable : ItemInteractable
     public void Drop()
     {
         var handPosition = handLocation.transform;
-        var handPositionForward = handPosition.forward;
+        var handPositionForward = visionOrientation.forward;
         
         transform.position = handPosition.position + handPositionForward.normalized;
         transform.rotation = handPosition.rotation;
-        GetComponent<Rigidbody>().AddForce(handPositionForward * dropForce, ForceMode.Impulse);
         gameObject.SetActive(true);
+        GetComponent<Rigidbody>().AddForce(handPositionForward * dropForce, ForceMode.Impulse);
+     
     }
     
     public override void InteractPrimary()
@@ -49,6 +46,6 @@ public class ItemPickable : ItemInteractable
         {
             return "Inventory full";
         }
-        return "Pick (" + InteractionKeyCode + ")";
+        return "Pick (E)";
     }
 }
