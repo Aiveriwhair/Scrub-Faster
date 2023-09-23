@@ -6,13 +6,20 @@ public class PlayerPointer : MonoBehaviour
     public float interactDistance = 3f;
     public Transform orientation;
     public LayerMask detectedLayer;
+    
     private ItemInteractable _pointedItem = null;
+    private RaycastHit _hit;
 
 
     public ItemInteractable PointingAt()
     {
         return !_pointedItem ? null : _pointedItem;
     }
+
+    public RaycastHit GetHit()
+    {
+        return _hit;
+    } 
     
     private void Start()
     {
@@ -21,15 +28,13 @@ public class PlayerPointer : MonoBehaviour
 
     private void Update()
     {
-        Vector3 rayStart = orientation.position;
-        Vector3 rayDirection = orientation.forward;
-        RaycastHit hit;
+        var rayStart = orientation.position;
+        var rayDirection = orientation.forward;
         _pointedItem = null;
 
-        if (Physics.Raycast(rayStart, rayDirection, out hit, interactDistance, detectedLayer))
+        if (Physics.Raycast(rayStart, rayDirection, out _hit, interactDistance, detectedLayer))
         {
-            var interactableObject = hit.collider.GetComponent<ItemInteractable>();
-
+            var interactableObject = _hit.collider.GetComponent<ItemInteractable>();
             if (interactableObject != null)
             {
                 pointerInfoDisplay.gameObject.SetActive(true);

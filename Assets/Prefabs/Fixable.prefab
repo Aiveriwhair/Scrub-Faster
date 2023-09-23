@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2169459844598838398}
   - component: {fileID: 7036745201789890014}
   - component: {fileID: 5368720351211135452}
-  - component: {fileID: 2733703630572546442}
+  - component: {fileID: 3206952039578588412}
   m_Layer: 6
   m_Name: Fixable
   m_TagString: Untagged
@@ -122,12 +122,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
+  outlineWidth: 4
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!135 &2733703630572546442
-SphereCollider:
+--- !u!64 &3206952039578588412
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -144,9 +144,10 @@ SphereCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1800724379404204203
 GameObject:
   m_ObjectHideFlags: 0

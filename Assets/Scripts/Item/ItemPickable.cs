@@ -25,7 +25,10 @@ public class ItemPickable : ItemInteractable
         transform.position = handPosition.position + handPositionForward.normalized;
         transform.rotation = handPosition.rotation;
         gameObject.SetActive(true);
-        GetComponent<Rigidbody>().AddForce(handPositionForward * dropForce, ForceMode.Impulse);
+
+        var rb = GetComponent<Rigidbody>();
+        rb.velocity = Vector3.zero;
+        rb.AddForce(handPositionForward * dropForce, ForceMode.Impulse);
      
     }
     

@@ -1,5 +1,5 @@
 using UnityEngine;
 public class ToolFix : ItemPickable
 {
-    public int fixForce; 
+    public int fixForce = 2; 
 }
