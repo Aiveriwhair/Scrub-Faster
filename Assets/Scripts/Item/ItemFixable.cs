@@ -13,6 +13,7 @@ public class ItemFixable : ItemInteractable
     private int fixProgress = 0;
     private MeshFilter _meshFilter;
     private MeshRenderer _meshRenderer;
+    private MeshCollider _meshCollider;
 
     private void Awake()
     {
@@ -20,11 +21,15 @@ public class ItemFixable : ItemInteractable
         if (_meshRenderer == null) throw new Exception("The object should have a MeshRenderer Component");
         _meshFilter = GetComponent<MeshFilter>();
         if (_meshFilter == null) throw new Exception("The object should have a MeshFilter Component");
+        _meshCollider = GetComponent<MeshCollider>();
+        if (_meshCollider == null) throw new Exception("The object should have a MeshCollider Component");
     }
 
     private void Start()
     {
-        _meshFilter.mesh = brokenItem.gameObject.GetComponent<MeshFilter>().mesh;
+        var mesh = brokenItem.gameObject.GetComponent<MeshFilter>().mesh;
+        _meshFilter.mesh = mesh;
+        _meshCollider.sharedMesh = mesh;
         _meshRenderer.material = brokenItem.gameObject.GetComponent<MeshRenderer>().material;
     }
 
@@ -41,7 +46,9 @@ public class ItemFixable : ItemInteractable
         fixProgress += force;
         if (!isBroken())
         {
-            _meshFilter.mesh = fixedItem.GetComponent<MeshFilter>().mesh;
+            var mesh = fixedItem.GetComponent<MeshFilter>().mesh;
+            _meshFilter.mesh = mesh;
+            _meshCollider.sharedMesh = mesh;
             _meshRenderer.material = fixedItem.GetComponent<MeshRenderer>().material;
         }
     }

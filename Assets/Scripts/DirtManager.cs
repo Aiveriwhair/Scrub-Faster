@@ -12,18 +12,24 @@ public class DirtManager : MonoBehaviour
     private bool _isClean;
 
 
+    [Header("Cellular automata")]
+    [Range(0, 100)]
+    public int randomFillPercent;
+    public int numIterations;
+
+
+    [Header("Mesh Generation")]
+    public float squareSize;
+    
     [Header("Dirt settings")]
     public int gridSizeX = 20;
     public int gridSizeY = 20;
-    public float cellSize = .05f;
-    public float scale = .08f;
-    public int seed;
-    public float dirtHeight = .01f;
+    
+    
 
     private void Awake()
     {
         _isClean = false;
-        seed = 0;
         _dirtCollider = gameObject.AddComponent<MeshCollider>();
     }
 
@@ -33,71 +39,11 @@ public class DirtManager : MonoBehaviour
         GetComponent<MeshFilter>().mesh = _dirtMesh;
         _dirtCollider.sharedMesh = _dirtMesh;
     }
-    public void GenerateDirtMesh()
+
+    private void GenerateDirtMesh()
     {
-        _dirtMesh = new Mesh();
-
-        Random.InitState(seed);
-
-        Vector3[] vertices = new Vector3[(gridSizeX + 1) * (gridSizeY + 1)];
-        int[] triangles = new int[gridSizeX * gridSizeY * 6];
-
-        for (int y = 0; y <= gridSizeY; y++)
-        {
-            for (int x = 0; x <= gridSizeX; x++)
-            {
-                float xOffset = Random.Range(-cellSize * 0.2f, cellSize * 0.2f);
-                float yOffset = Random.Range(-cellSize * 0.2f, cellSize * 0.2f);
-                float height = Mathf.PerlinNoise((x + xOffset) * scale, (y + yOffset) * scale);
-
-                height = Mathf.Round(height) * dirtHeight;
-
-                vertices[y * (gridSizeX + 1) + x] = new Vector3(x * cellSize, height, y * cellSize);
-            }
-        }
-
-        int triangleIndex = 0;
-        for (int y = 0; y < gridSizeY; y++)
-        {
-            for (int x = 0; x < gridSizeX; x++)
-            {
-                int vertexIndex = y * (gridSizeX + 1) + x;
-
-                triangles[triangleIndex] = vertexIndex;
-                triangles[triangleIndex + 1] = vertexIndex + gridSizeX + 1;
-                triangles[triangleIndex + 2] = vertexIndex + 1;
-                triangles[triangleIndex + 3] = vertexIndex + 1;
-                triangles[triangleIndex + 4] = vertexIndex + gridSizeX + 1;
-                triangles[triangleIndex + 5] = vertexIndex + gridSizeX + 2;
-
-                triangleIndex += 6;
-            }
-        }
-
-        List<int> validTriangles = new();
-        for (int i = 0; i < triangles.Length; i += 3)
-        {
-            var vertexIndex1 = triangles[i];
-            var vertexIndex2 = triangles[i + 1];
-            var vertexIndex3 = triangles[i + 2];
-
-            var height1 = vertices[vertexIndex1].y;
-            var height2 = vertices[vertexIndex2].y;
-            var height3 = vertices[vertexIndex3].y;
-
-            if (Mathf.Approximately(height1, dirtHeight) && Mathf.Approximately(height2, dirtHeight) && Mathf.Approximately(height3, dirtHeight))
-            {
-                continue;
-            }
-
-            validTriangles.Add(vertexIndex1);
-            validTriangles.Add(vertexIndex2);
-            validTriangles.Add(vertexIndex3);
-        }
-
-        _dirtMesh.vertices = vertices;
-        _dirtMesh.triangles = validTriangles.ToArray();
-        _dirtMesh.RecalculateNormals();
+        var grid = GetComponent<CellularAutomaton>().GenerateMap(gridSizeX, gridSizeY, randomFillPercent, numIterations);
+        _dirtMesh = (GetComponent<DirtMeshGenerator>().GenerateMesh(grid, squareSize));
     }
 
     public bool IsClean()
