@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 public class ItemCleanable : ItemInteractable
 {
@@ -14,21 +15,8 @@ public class ItemCleanable : ItemInteractable
     {
         var cleaningTool = inventory.GetSelectedItem() as ToolClean; 
         if(!cleaningTool) return;
-        if (_dirtManager.IsClean())
-        {
-            Destroy(this); 
-            return;
-        }
-
-        if (pointer.PointingAt() is not ItemCleanable) return;
-        
-        var hit = pointer.GetHit();
-        var meshCollider = hit.collider as MeshCollider;
-        if (meshCollider != null && meshCollider.sharedMesh != null)
-        {
-            _dirtManager.Clean(hit.point, cleaningTool.radius);
-        }
-        if(_dirtManager.IsClean()) Destroy(this);
+        cleaningTool.InteractPrimary();
+        if (_dirtManager.IsClean()) return;
     }
     public override void InteractSecondary()
     {

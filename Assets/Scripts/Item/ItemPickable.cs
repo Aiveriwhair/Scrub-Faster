@@ -10,6 +10,8 @@ public class ItemPickable : ItemInteractable
     
     [Header("Pick")]
     public PlayerInventory inventory;
+
+    protected bool _isPicked = false;
     
     private new void Update()
     {
@@ -22,20 +24,22 @@ public class ItemPickable : ItemInteractable
         var handPosition = handLocation.transform;
         var handPositionForward = visionOrientation.forward;
         
-        transform.position = handPosition.position + handPositionForward.normalized;
+        transform.position = handPosition.position;
         transform.rotation = handPosition.rotation;
         gameObject.SetActive(true);
 
         var rb = GetComponent<Rigidbody>();
         rb.velocity = Vector3.zero;
         rb.AddForce(handPositionForward * dropForce, ForceMode.Impulse);
-     
+        _isPicked = false;
     }
     
     public override void InteractPrimary()
     {
+        if(_isPicked) return;
         if(!inventory.Add(this)) return;
         gameObject.SetActive(false);
+        _isPicked = true;
     }
 
     public override void InteractSecondary()
@@ -45,10 +49,6 @@ public class ItemPickable : ItemInteractable
 
     public override string GetInteractionText()
     {
-        if (inventory.IsFull())
-        {
-            return "Inventory full";
-        }
-        return "Pick (E)";
+        return inventory.IsFull() ? "Inventory full" : "Pick (E)";
     }
 }

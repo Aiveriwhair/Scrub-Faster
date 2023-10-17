@@ -84,7 +84,7 @@ public class DirtManager : MonoBehaviour
         if (newTriangles.Count <= 0)
         {
             _isClean = true;
-            Debug.Log("Saleté cleaned");
+            return;
         }
         
 

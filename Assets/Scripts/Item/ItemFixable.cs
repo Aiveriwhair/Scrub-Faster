@@ -27,10 +27,10 @@ public class ItemFixable : ItemInteractable
 
     private void Start()
     {
-        var mesh = brokenItem.gameObject.GetComponent<MeshFilter>().mesh;
+        var mesh = brokenItem.gameObject.GetComponent<MeshFilter>().sharedMesh;
         _meshFilter.mesh = mesh;
         _meshCollider.sharedMesh = mesh;
-        _meshRenderer.material = brokenItem.gameObject.GetComponent<MeshRenderer>().material;
+        _meshRenderer.material = brokenItem.gameObject.GetComponent<MeshRenderer>().sharedMaterial;
     }
 
     public override void InteractPrimary()
@@ -46,10 +46,10 @@ public class ItemFixable : ItemInteractable
         fixProgress += force;
         if (!isBroken())
         {
-            var mesh = fixedItem.GetComponent<MeshFilter>().mesh;
+            var mesh = fixedItem.GetComponent<MeshFilter>().sharedMesh;
             _meshFilter.mesh = mesh;
             _meshCollider.sharedMesh = mesh;
-            _meshRenderer.material = fixedItem.GetComponent<MeshRenderer>().material;
+            _meshRenderer.material = fixedItem.GetComponent<MeshRenderer>().sharedMaterial;
         }
     }
 
@@ -60,9 +60,9 @@ public class ItemFixable : ItemInteractable
 
     public override string GetInteractionText()
     {
-        if (fixProgress <= 0) return "Repair (E)";
+        if (fixProgress <= 0) return "Repair " + itemName + " (E)";
         if (isBroken()) return FixPercent() + "% Repaired";
-        return "Repaired";
+        return itemName;
     }
 
     public bool isBroken()

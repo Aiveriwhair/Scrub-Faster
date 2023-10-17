@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class CellularAutomaton : MonoBehaviour
 {
     private int _gridSizeX;
@@ -23,15 +22,13 @@ public class CellularAutomaton : MonoBehaviour
     
 
     private void RandomFillGrid() {
-        var seed = Time.time.ToString();
-        System.Random pseudoRandom = new System.Random(seed.GetHashCode());
         for (int x = 0; x < _gridSizeX; x ++) {
             for (int y = 0; y < _gridSizeY; y ++) {
                 if (x == 0 || x == _gridSizeX-1 || y == 0 || y == _gridSizeY -1) {
                     _grid[x,y] = 1;
                 }
                 else {
-                    _grid[x,y] = (pseudoRandom.Next(0,100) < _randomFillPercent)? 1: 0;
+                    _grid[x,y] = (Random.Range(0,100) < _randomFillPercent)? 1: 0;
                 }
             }
         }

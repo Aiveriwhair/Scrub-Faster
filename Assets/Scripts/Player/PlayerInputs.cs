@@ -29,9 +29,14 @@ public class PlayerInputs : MonoBehaviour
         if (Input.GetKeyDown(interactPrimaryKeyCode))
         {
             var inRangeItem = _pointer.PointingAt();
+            var selectedItem = _inventory.GetSelectedItem();
             if (inRangeItem)
             {
                 inRangeItem.InteractPrimary();
+            }
+            else if (selectedItem is Tool)
+            {
+                selectedItem.InteractPrimary();
             }
         }
         if (Input.GetKeyDown(interactSecondaryKeyCode))
