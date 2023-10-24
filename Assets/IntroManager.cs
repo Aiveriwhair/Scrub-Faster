@@ -23,6 +23,7 @@ public class IntroManager : MonoBehaviour
     public Text fullMessages;
     public float fullCanvasDisplayTime = 5f;
 
+    private bool coroutinePlaying = false;
     public enum IntroStates
     {
         INTROMESSAGE,
@@ -72,6 +73,7 @@ public class IntroManager : MonoBehaviour
     
     IEnumerator ShowFullMessage(string message, float duration, IntroStates nextState)
     {
+        coroutinePlaying = true;
         playerMovement.acceptPlayerInput = false;
         HideTopMessage();
         fullMessages.text = message;
@@ -82,18 +84,28 @@ public class IntroManager : MonoBehaviour
         fullCanvas.enabled = false;
         fullMessages.enabled = false;
         _currentState = nextState;
+        coroutinePlaying = false;
     }
+    
+    IEnumerator CompleteIntroduction(string message, float duration)
+    {
+        coroutinePlaying = true;
+        yield return new WaitForSeconds(3);
+        StartCoroutine(ShowFullMessage(message, duration, nextState: IntroStates.FINISHED));
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene(0);
+        coroutinePlaying = false;
+    }
+    
 
     private void IntroStateHandler()
     {
+        if (coroutinePlaying) return;
         switch (_currentState)
         {
             case IntroStates.INTROMESSAGE:
-                StartCoroutine(ShowFullMessage("You just had a huge party, you gotta clean up before your parents gets home...\n" +
-                                "Let's learn the basics of the game, happy Scrubbing !", fullCanvasDisplayTime,
-                    IntroStates.PICKPHONE));
+                StartCoroutine(ShowFullMessage("Let's learn the basics...\nFollow the instructions in the top right corner!", fullCanvasDisplayTime, IntroStates.PICKPHONE));
                 break;
-            
             case IntroStates.PICKPHONE:
                 ShowTopMessage("Pick the phone on the table (E)");
                 if (playerInventory.Contains(itemPickable))
@@ -140,9 +152,8 @@ public class IntroManager : MonoBehaviour
                     _currentState = IntroStates.FINISHED;
                 }
                 break;
-
             case IntroStates.FINISHED:
-                StartCoroutine(ShowFullMessage("Introduction completed. Returning to menu...", 3, IntroStates.FINISHED));
+                StartCoroutine(CompleteIntroduction("Well done! Introduction completed. Returning to menu...", 3f));
                 break;
         }
     }

@@ -12,6 +12,7 @@ public class ItemFixable : ItemInteractable
 
     private void Awake()
     {
+        fixedItemPrefab.SetActive(false);
         _itemMeshCollider = GetComponent<MeshCollider>();
         if (_itemMeshCollider == null) throw new Exception("The object should have a MeshCollider Component");
     }
@@ -50,7 +51,7 @@ public class ItemFixable : ItemInteractable
 
     public override void InteractSecondary()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public override string GetInteractionText()
@@ -77,7 +78,7 @@ public class ItemFixable : ItemInteractable
 
     private void RepairObject()
     {
-        Destroy(gameObject); // Destroy the broken object
-        Instantiate(fixedItemPrefab, transform.position, transform.rotation); // Instantiate the fixed object
+        Destroy(gameObject);
+        Instantiate(fixedItemPrefab, transform.position, transform.rotation).SetActive(true);
     }
 }
