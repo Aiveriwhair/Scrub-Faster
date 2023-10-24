@@ -26,4 +26,9 @@ public class ItemCleanable : ItemInteractable
     {
         return "Clean (E)";
     }
+
+    public bool isClean()
+    {
+        return _dirtManager.IsClean();
+    }
 }

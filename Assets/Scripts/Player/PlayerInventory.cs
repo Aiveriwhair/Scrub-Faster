@@ -1,74 +1,122 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInventory : MonoBehaviour
 {
     [Range(1, 10)]
     public int inventorySize = 3;
-    
-    private bool _hasBeenModified = false;
-    [SerializeField]
-    private List<ItemInteractable> _inventoryItems = new();
+    [SerializeField] private ItemPickable[] inventoryItems;
+    private int _itemsNumber = 0;
     private int _cursor = 0;
     
-    public bool Add(ItemInteractable item)
+    // 
+    private PlayerItemCarry _itemCarry;
+    
+    // UI
+    private List<Image> _inventoryImages = new();
+    public Sprite defaultIcon;
+    public Sprite emptyIcon;
+    public Image toolbar;
+
+    private void Awake()
+    {
+        _itemCarry = GetComponent<PlayerItemCarry>();
+        if (_itemCarry == null) throw new MissingComponentException("GameObject must have a PlayerItemCarryComponent");
+    }
+
+
+    public void Start()
+    {
+        inventoryItems = new ItemPickable[inventorySize];
+        
+        // LOAD UI
+        foreach (Transform child in toolbar.transform)
+        {
+            var childGameObject = child.gameObject.GetComponent<Image>();
+            if(childGameObject) _inventoryImages.Add(childGameObject);
+        }
+        UpdateInventoryUI();
+    }
+
+
+    private void UpdateInventoryUI()
+    {
+        if (_inventoryImages.Count < inventorySize)
+        {
+            print("UI cannot display the whole inventory");
+            return;
+        }
+        
+        for (var i = 0; i < inventorySize; i++)
+        {
+            var currentItem = GetIndex(i);
+            if (currentItem is null)
+            {
+                _inventoryImages[i].sprite = emptyIcon;
+            }
+            else if (currentItem.itemIcon is null)
+            {
+                _inventoryImages[i].sprite = defaultIcon;
+            }
+            else
+            {
+                _inventoryImages[i].sprite = currentItem.itemIcon;
+            }
+        }
+    }
+    
+    public bool Add(ItemPickable item)
     {
         if (IsFull())
         {
             return false;
         }
-        _inventoryItems.Add(item);
-        _hasBeenModified = true;
+        inventoryItems[_itemsNumber] = item;
+        _itemsNumber++;
+        UpdateInventoryUI();
+        item.gameObject.SetActive(false);
+        _itemCarry.ManualUpdate();
         return true;
     }
 
-    public ItemInteractable GetIndex(int index)
+    public ItemPickable GetIndex(int index)
     {
-        if (index >= _inventoryItems.Count || index < 0)
+        if (index >= inventorySize || index < 0)
         {
             return null;
         }
-        return _inventoryItems[index];
+        return inventoryItems[index];
     }
 
-    public void Remove(ItemInteractable item)
-    {
-        if (!_inventoryItems.Remove(item))
-        {
-            return;
-        }
-        _hasBeenModified = true;
-    }
-
-    public ItemInteractable RemoveAt(int index = 0)
+    private ItemPickable RemoveAt(int index)
     {
         if (IsEmpty())
         {
             return null;
         }
-        var item = _inventoryItems[index];
-        _inventoryItems.RemoveAt(index);
+        var item = inventoryItems[index];
+        inventoryItems[index] = null;
+        if (item)
+        {
+            _itemsNumber--;
+            UpdateInventoryUI();
+            _itemCarry.ManualUpdate();
+        }
         return item;
     }
 
-    public bool Includes(ItemInteractable item)
+    public ItemPickable RemoveAtCursor()
     {
-        return _inventoryItems.Contains(item);
-    }
-
-    public void Clear()
-    {
-        if (IsEmpty())
-        {
-            return;
-        }
-        _inventoryItems.Clear();
-        _hasBeenModified = true;
+        var item = RemoveAt(_cursor);
+        return item;
     }
 
     public int Count()
     {
-        return _inventoryItems.Count;
+        return _itemsNumber;
     }
 
     public bool IsFull()
@@ -81,13 +129,20 @@ public class PlayerInventory : MonoBehaviour
         return Count() <= 0;
     }
 
-    public ItemInteractable GetSelectedItem()
+    public ItemPickable GetSelectedItem()
     {
-        return IsEmpty() ? null : _inventoryItems[_cursor];
+        return inventoryItems[_cursor];
     }
 
-    public bool HasBeenModified()
+    public bool Contains(ItemPickable item)
     {
-        return _hasBeenModified;
+        return inventoryItems.Contains(item);
+    }
+    
+    public void CursorAt(int index)
+    {
+        if (index >= inventorySize || index == _cursor) return;
+        _cursor = index;
+        _itemCarry.ManualUpdate();
     }
 }

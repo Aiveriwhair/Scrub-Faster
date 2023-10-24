@@ -14,7 +14,9 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce;
     public float jumpCooldown;
     public float airMultiplier;
+    public Animator animator;
     private bool _readyToJump;
+    public bool acceptPlayerInput = true;
 
     [Header("Key binds")] 
     public KeyCode jumpKey;
@@ -39,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
     private MovementState _movementState;
     private enum MovementState
     {
+        Idle,
         Walking,
         Sprinting,
         Air
@@ -53,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void InputProcess()
     {
+        if (!acceptPlayerInput) return;
         _horizontalInput = Input.GetAxisRaw("Horizontal");
         _verticalInput = Input.GetAxisRaw("Vertical");
 
@@ -101,7 +105,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void GroundCheck()
     {
-        _grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * .5f + .2f, whatIsGround);
+        _grounded = Physics.Raycast(transform.position, Vector3.down, .1f, whatIsGround);
         if (_grounded)
             _rb.drag = groundDrag;
         else
@@ -124,12 +128,23 @@ public class PlayerMovement : MonoBehaviour
     {
         if (_grounded && Input.GetKey(sprintKey))
         {
+            animator.SetBool("isWalking", false);
+            animator.SetBool("isRunning", true);
             _movementState = MovementState.Sprinting;
             _moveSpeed = sprintSpeed;
         }
-        else if (_grounded)
+        else if (_grounded && (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0))
         {
+            animator.SetBool("isWalking", true);
+            animator.SetBool("isRunning", false);
             _movementState = MovementState.Walking;
+            _moveSpeed = normalSpeed;
+        }
+        else if(_grounded)
+        {
+            animator.SetBool("isWalking", false);
+            animator.SetBool("isRunning", false);
+            _movementState = MovementState.Idle;
             _moveSpeed = normalSpeed;
         }
         else
@@ -137,6 +152,5 @@ public class PlayerMovement : MonoBehaviour
             _moveSpeed = normalSpeed;
             _movementState = MovementState.Air;
         }
-            
     }
 }

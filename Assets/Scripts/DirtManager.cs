@@ -1,8 +1,8 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
+
+
+
 
 public class DirtManager : MonoBehaviour
 {
@@ -10,6 +10,7 @@ public class DirtManager : MonoBehaviour
     private Mesh _dirtMesh;
     private MeshCollider _dirtCollider;
     private bool _isClean;
+    private ParticleSystem _particleSystem;
 
 
     [Header("Cellular automata")]
@@ -31,6 +32,10 @@ public class DirtManager : MonoBehaviour
     {
         _isClean = false;
         _dirtCollider = gameObject.AddComponent<MeshCollider>();
+        if(_dirtCollider == null)  throw new MissingComponentException("MeshCollider needed");
+        _particleSystem = GetComponentInChildren<ParticleSystem>();
+        if (_particleSystem == null) throw new MissingComponentException("A Particle System component is required");
+        _particleSystem.Stop();
     }
 
     void Start()
@@ -84,9 +89,8 @@ public class DirtManager : MonoBehaviour
         if (newTriangles.Count <= 0)
         {
             _isClean = true;
-            return;
+            _particleSystem.Play();
         }
-        
 
         _dirtCollider.sharedMesh = _dirtMesh;
         GetComponent<MeshFilter>().mesh = _dirtMesh;

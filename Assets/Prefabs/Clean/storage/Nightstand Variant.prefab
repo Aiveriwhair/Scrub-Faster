@@ -1,0 +1,160 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &7460601700609623393
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1742708627542088, guid: 61285939438490c4b9b0262c84585dea, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1794530351443176, guid: 61285939438490c4b9b0262c84585dea, type: 3}
+      propertyPath: m_Name
+      value: Nightstand Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 1794530351443176, guid: 61285939438490c4b9b0262c84585dea, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352253979572294, guid: 61285939438490c4b9b0262c84585dea, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352253979572294, guid: 61285939438490c4b9b0262c84585dea, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352253979572294, guid: 61285939438490c4b9b0262c84585dea, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352253979572294, guid: 61285939438490c4b9b0262c84585dea, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 20.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352253979572294, guid: 61285939438490c4b9b0262c84585dea, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352253979572294, guid: 61285939438490c4b9b0262c84585dea, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 8.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352253979572294, guid: 61285939438490c4b9b0262c84585dea, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352253979572294, guid: 61285939438490c4b9b0262c84585dea, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352253979572294, guid: 61285939438490c4b9b0262c84585dea, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352253979572294, guid: 61285939438490c4b9b0262c84585dea, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352253979572294, guid: 61285939438490c4b9b0262c84585dea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352253979572294, guid: 61285939438490c4b9b0262c84585dea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352253979572294, guid: 61285939438490c4b9b0262c84585dea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 64611959173449234, guid: 61285939438490c4b9b0262c84585dea, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1794530351443176, guid: 61285939438490c4b9b0262c84585dea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7129441247291753739}
+    - targetCorrespondingSourceObject: {fileID: 1794530351443176, guid: 61285939438490c4b9b0262c84585dea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4684570336753187072}
+    - targetCorrespondingSourceObject: {fileID: 1794530351443176, guid: 61285939438490c4b9b0262c84585dea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6592701920648073870}
+  m_SourcePrefab: {fileID: 100100000, guid: 61285939438490c4b9b0262c84585dea, type: 3}
+--- !u!1 &7462184938702498185 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1794530351443176, guid: 61285939438490c4b9b0262c84585dea, type: 3}
+  m_PrefabInstance: {fileID: 7460601700609623393}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7129441247291753739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7462184938702498185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.31359026, g: 0.8207547, b: 0.3137255, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &4684570336753187072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7462184938702498185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10368ba103806475895d54d2916ddfa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemIcon: {fileID: 0}
+  itemName: Nightstand
+  itemMass: 1
+  isGlowing: 0
+  playerInventory: {fileID: 0}
+  maxStorageWeight: 10
+--- !u!54 &6592701920648073870
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7462184938702498185}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

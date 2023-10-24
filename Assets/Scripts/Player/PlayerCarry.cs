@@ -1,6 +1,6 @@
-using System;
 using UnityEngine;
 
+/*
 public class PlayerCarry : MonoBehaviour
 {
     private PlayerInventory _inventory;
@@ -13,11 +13,8 @@ public class PlayerCarry : MonoBehaviour
     }
 
     private void Update()
-    {
-        if (_inventory.HasBeenModified())
-        {
-            UpdateCarriedItem();
-        }
+    { 
+        UpdateCarriedItem();
     }
 
     private void UpdateCarriedItem()
@@ -34,3 +31,4 @@ public class PlayerCarry : MonoBehaviour
     }
 
 }
+*/

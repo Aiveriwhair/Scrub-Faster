@@ -20,7 +20,9 @@ public class ItemStorage : ItemInteractable
         if (_currentWeight + item.itemMass >= maxStorageWeight) return;
         
         _currentWeight += item.itemMass;
-        _storedItems.Add((ItemPickable)playerInventory.RemoveAt(0));
+        var newItem = (ItemPickable)playerInventory.RemoveAtCursor();
+        _storedItems.Add(newItem);
+        newItem.gameObject.SetActive(false);
     }
 
     public override void InteractSecondary()

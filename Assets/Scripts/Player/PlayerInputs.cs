@@ -20,7 +20,7 @@ public class PlayerInputs : MonoBehaviour
     {
         if (Input.GetKeyDown(dropKeyCode))
         {
-            var item = _inventory.RemoveAt(0);
+            var item = _inventory.RemoveAtCursor();
             if (item)
             {
                 ((ItemPickable)item).Drop();
@@ -39,6 +39,14 @@ public class PlayerInputs : MonoBehaviour
                 selectedItem.InteractPrimary();
             }
         }
+        else if(Input.GetKey(interactPrimaryKeyCode))
+        {
+            var selectedItem = _inventory.GetSelectedItem();
+            if (selectedItem is Tool)
+            {
+                selectedItem.InteractPrimary();
+            }
+        }
         if (Input.GetKeyDown(interactSecondaryKeyCode))
         {
             var inRangeItem = _pointer.PointingAt();
@@ -46,6 +54,19 @@ public class PlayerInputs : MonoBehaviour
             {
                 inRangeItem.InteractSecondary();
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            _inventory.CursorAt(0);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            _inventory.CursorAt(1);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            _inventory.CursorAt(2);   
         }
     }
 }

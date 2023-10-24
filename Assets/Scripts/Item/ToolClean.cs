@@ -1,6 +1,7 @@
 using UnityEngine;
 public class ToolClean : Tool {
     public override void InteractPrimary() {
+
         if (!_isPicked) base.InteractPrimary();
         if (!pointer.Raycast(detectionLayer, out var hit))
         {
@@ -11,7 +12,6 @@ public class ToolClean : Tool {
         var colliders = Physics.OverlapSphere(center, radius, detectionLayer);
         foreach (var coll in colliders)
         {
-            print(coll.gameObject.name);
             var cleanableComponent = coll.gameObject.GetComponent<DirtManager>();
             if (cleanableComponent is not null)
             {

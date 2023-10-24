@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class ItemInteractable : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public abstract class ItemInteractable : MonoBehaviour
     public int itemMass = 1;
     [HideInInspector]
     public bool isGlowing = false;
+    
     
     public void Update()
     {

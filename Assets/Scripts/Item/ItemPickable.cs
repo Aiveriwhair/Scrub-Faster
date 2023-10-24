@@ -7,6 +7,10 @@ public class ItemPickable : ItemInteractable
     public Transform handLocation;
     public Transform visionOrientation;
     public float dropForce;
+    public Sprite itemIcon;
+    
+    public Vector3 holdingPositionOffset = Vector3.zero;
+    public Vector3 holdingRotationEulerAngles = Vector3.zero;
     
     [Header("Pick")]
     public PlayerInventory inventory;
@@ -38,7 +42,6 @@ public class ItemPickable : ItemInteractable
     {
         if(_isPicked) return;
         if(!inventory.Add(this)) return;
-        gameObject.SetActive(false);
         _isPicked = true;
     }
 

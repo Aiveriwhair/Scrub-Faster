@@ -1,0 +1,154 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3067760824924821996
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5266117821352957060, guid: 28ab1d578905d5e438faff691d0ea172, type: 3}
+      propertyPath: m_Name
+      value: Red Shoe Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 5266117821352957060, guid: 28ab1d578905d5e438faff691d0ea172, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5266117821353378020, guid: 28ab1d578905d5e438faff691d0ea172, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5266117821353378020, guid: 28ab1d578905d5e438faff691d0ea172, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5266117821353378020, guid: 28ab1d578905d5e438faff691d0ea172, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5266117821353378020, guid: 28ab1d578905d5e438faff691d0ea172, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 5266117821353378020, guid: 28ab1d578905d5e438faff691d0ea172, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.218
+      objectReference: {fileID: 0}
+    - target: {fileID: 5266117821353378020, guid: 28ab1d578905d5e438faff691d0ea172, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 5266117821353378020, guid: 28ab1d578905d5e438faff691d0ea172, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5266117821353378020, guid: 28ab1d578905d5e438faff691d0ea172, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5266117821353378020, guid: 28ab1d578905d5e438faff691d0ea172, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5266117821353378020, guid: 28ab1d578905d5e438faff691d0ea172, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5266117821353378020, guid: 28ab1d578905d5e438faff691d0ea172, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5266117821353378020, guid: 28ab1d578905d5e438faff691d0ea172, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5266117821353378020, guid: 28ab1d578905d5e438faff691d0ea172, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5266117821352957060, guid: 28ab1d578905d5e438faff691d0ea172, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4068303455067723364}
+    - targetCorrespondingSourceObject: {fileID: 5266117821352957060, guid: 28ab1d578905d5e438faff691d0ea172, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1654542372050474492}
+    - targetCorrespondingSourceObject: {fileID: 5266117821352957060, guid: 28ab1d578905d5e438faff691d0ea172, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8873439767743618562}
+  m_SourcePrefab: {fileID: 100100000, guid: 28ab1d578905d5e438faff691d0ea172, type: 3}
+--- !u!1 &7171949930571369832 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5266117821352957060, guid: 28ab1d578905d5e438faff691d0ea172, type: 3}
+  m_PrefabInstance: {fileID: 3067760824924821996}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4068303455067723364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7171949930571369832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.8018868, g: 0.3861444, b: 0.16264686, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!54 &1654542372050474492
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7171949930571369832}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &8873439767743618562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7171949930571369832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4700f1618f1d4d6abc66ef2407e6b1e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemIcon: {fileID: 0}
+  itemName: Red Shoe
+  itemMass: 1
+  isGlowing: 0
+  handLocation: {fileID: 0}
+  visionOrientation: {fileID: 0}
+  dropForce: 5
+  inventory: {fileID: 0}
