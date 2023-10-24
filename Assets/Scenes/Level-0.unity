@@ -1799,9 +1799,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7596469041508661388, guid: 96f23bc12fbad4d3fb8202ba942fdafa, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7596474631077872434, guid: 96f23bc12fbad4d3fb8202ba942fdafa, type: 3}
       propertyPath: m_Name
       value: Wardrobe Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7597236661860728092, guid: 96f23bc12fbad4d3fb8202ba942fdafa, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7605544666325280604, guid: 96f23bc12fbad4d3fb8202ba942fdafa, type: 3}
       propertyPath: m_Convex
